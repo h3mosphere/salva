@@ -1,25 +1,25 @@
 [package]
-name    = "examples3d"
+name = "examples3d"
 version = "0.1.0"
-authors = [ "Sébastien Crozet <developer@crozet.re>" ]
+authors = ["Sébastien Crozet <developer@crozet.re>"]
 edition = "2018"
 
 [features]
 default = []
-parallel = [ "rapier_testbed3d/parallel", "salva3d/parallel"]
+parallel = ["salva3d/parallel"]
 
 [dependencies]
 num-traits = "0.2"
-Inflector  = "0.11"
-nalgebra   = "0.31.1"
-rapier3d = "0.14"
-rapier_testbed3d = "0.14"
-parry3d = "0.9"
-bevy = "0.8"
+Inflector = "0.11"
+nalgebra = "0.32"
+rapier3d = "0.17"
+rapier_testbed3d = "0.17"
+parry3d = "0.13"
+bevy = "0.9"
 
 [dependencies.salva3d]
 path = "../build/salva3d"
-features = [ "rapier", "rapier-testbed", "sampling", "rapier-harness" ]
+features = ["rapier", "rapier-testbed", "sampling", "rapier-harness"]
 
 [target.wasm32-unknown-unknown.dependencies]
 stdweb = "0.4"

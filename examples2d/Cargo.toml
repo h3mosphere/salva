@@ -1,25 +1,24 @@
 [package]
-name    = "examples2d"
+name = "examples2d"
 version = "0.1.0"
-authors = [ "Sébastien Crozet <developer@crozet.re>" ]
+authors = ["Sébastien Crozet <developer@crozet.re>"]
 edition = "2018"
 
 [features]
 default = []
-parallel = [ "rapier_testbed2d/parallel"]
+parallel = ["rapier_testbed2d/parallel"]
 
 [dependencies]
-Inflector  = "0.11"
-nalgebra   = "0.31.1"
-rapier2d = "0.14"
-rapier_testbed2d = "0.14"
-parry2d = "0.9"
-parry3d = "0.9"
-bevy = "0.8"
+Inflector = "0.11"
+nalgebra = "0.32"
+rapier2d = "0.17"
+rapier_testbed2d = "0.17"
+parry2d = "0.13"
+bevy = "0.9"
 
 [dependencies.salva2d]
 path = "../build/salva2d"
-features = [ "rapier", "rapier-testbed", "sampling" ]
+features = ["rapier", "rapier-testbed", "sampling"]
 
 [target.wasm32-unknown-unknown.dependencies]
 stdweb = "0.4"

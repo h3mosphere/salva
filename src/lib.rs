@@ -254,7 +254,7 @@ pub mod math {
     pub type Jacobian<Real> = Matrix6xX<Real>;
 
     /// The type of a slice of the constraint jacobian in twist coordinates.
-    pub type JacobianSlice<'a, Real> = MatrixSlice3xX<'a, Real>;
+    pub type JacobianSlice<'a, Real> = MatrixView3xX<'a, Real>;
 
     /// The type of a mutable slice of the constraint jacobian in twist coordinates.
     pub type JacobianSliceMut<'a, Real> = MatrixSliceMut3xX<'a, Real>;

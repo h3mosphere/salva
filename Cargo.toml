@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = [ "build/salva2d", "build/salva3d", "examples2d", "examples3d" ]
+members = ["build/salva2d", "build/salva3d", "examples2d", "examples3d"]
 
 [profile.release]
 #lto = true
