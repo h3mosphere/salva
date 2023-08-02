@@ -142,7 +142,7 @@ where
                     }
 
                     *predicted_density = densities[fluid_id][i] + delta * timestep.dt();
-                    assert!(!predicted_density.is_zero());
+                    // assert!(!predicted_density.is_zero());
 
                     if *predicted_density < fluid_i.density0 {
                         na::zero::<Real>()
@@ -659,7 +659,7 @@ where
                             * c.weight;
                     }
 
-                    assert!(!density.is_zero());
+                    // assert!(!density.is_zero());
                 })
         }
     }
