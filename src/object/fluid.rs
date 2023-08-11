@@ -24,6 +24,8 @@ pub struct Fluid {
     deleted_particles: Vec<bool>,
     /// Indicates if a bit of the `deleted_particles` mask has been set.
     num_deleted_particles: usize,
+    /// Add these particles at next timestep
+    add_particles_at_next_timestep: (Vec<Point<Real>>, Option<Vec<Vector<Real>>>),
     /// The particles radius.
     particle_radius: Real,
 }
@@ -57,6 +59,7 @@ impl Fluid {
             num_deleted_particles: 0,
             density0,
             particle_radius,
+            add_particles_at_next_timestep: (Vec::new(), None),
         }
     }
 
@@ -66,6 +69,15 @@ impl Fluid {
             self.deleted_particles[particle] = true;
             self.num_deleted_particles += 1;
         }
+    }
+
+    /// Queue these particles for addition to fluid at next timestep
+    pub fn add_particles_at_next_timestep(
+        &mut self,
+        positions: &[Point<Real>],
+        velocities: Option<Vec<Vector<Real>>>,
+    ) {
+        self.add_particles_at_next_timestep = (positions.to_vec(), velocities)
     }
 
     /// The number of particles that will be deleted at the next timestep.
@@ -88,6 +100,18 @@ impl Fluid {
             self.deleted_particles.iter_mut().for_each(|i| *i = false);
             self.num_deleted_particles = 0;
         }
+    }
+
+    pub(crate) fn apply_particles_addition(&mut self) {
+        if self.add_particles_at_next_timestep.0.len() > 0 {
+            let (positions, velocities) = self.add_particles_at_next_timestep.clone();
+            if let Some(velocities) = velocities {
+                self.add_particles(positions.as_slice(), Some(&velocities));
+            } else {
+                self.add_particles(positions.as_slice(), None);
+            };
+        }
+        self.add_particles_at_next_timestep = (Vec::new(), None);
     }
 
     /// The radius of this fluid's particles.
