@@ -75,11 +75,14 @@ impl LiquidWorld {
         self.timestep_manager.reset(dt);
 
         for fluid in self.fluids.as_mut_slice() {
-            fluid.apply_particles_removal();
             fluid.apply_particles_addition();
         }
 
         self.solver.init_with_fluids(self.fluids.as_slice());
+
+        for fluid in self.fluids.as_mut_slice() {
+            fluid.apply_particles_removal();
+        }
 
         // Perform substeps.
         while !self.timestep_manager.is_done() {
