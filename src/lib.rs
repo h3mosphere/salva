@@ -54,6 +54,8 @@ extern crate rapier_testbed2d as rapier_testbed;
 #[cfg(all(feature = "dim3", feature = "rapier-testbed"))]
 extern crate rapier_testbed3d as rapier_testbed;
 
+#[macro_export]
+/// rayon par_iter helper macro
 macro_rules! par_iter {
     ($t: expr) => {{
         #[cfg(not(feature = "parallel"))]
@@ -65,6 +67,8 @@ macro_rules! par_iter {
     }};
 }
 
+#[macro_export]
+/// rayon par_iter_mut helper macro
 macro_rules! par_iter_mut {
     ($t: expr) => {{
         #[cfg(not(feature = "parallel"))]
@@ -76,6 +80,8 @@ macro_rules! par_iter_mut {
     }};
 }
 
+#[macro_export]
+/// rayon par_reduce_sum helper macro
 macro_rules! par_reduce_sum {
     ($identity: expr, $t: expr) => {{
         #[cfg(not(feature = "parallel"))]
